@@ -1,0 +1,198 @@
+@media print {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
+
+  .id-card-redesign {
+    width: 106mm;
+    height: 68mm;
+    margin: auto;
+    box-shadow: none;
+    transform: scale(1);
+    page-break-inside: avoid;
+    border: 0.45mm solid #1a3e6e;
+    border-radius: 2.6mm;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .id-card-header-redesign {
+    width: 100%;
+    background: var(--id-accent, #2176c7);
+    color: #fff !important;
+    text-align: center;
+    font-weight: 700;
+    padding: 2.8mm 0 1.9mm;
+    letter-spacing: 0.2mm;
+    line-height: 1.05;
+  }
+
+  .id-card-header-redesign div {
+    margin: 0;
+    font-size: 4.1mm;
+  }
+
+  .id-card-body-redesign {
+    display: grid !important;
+    grid-template-columns: 1fr 30mm !important; /* smaller right column for photo+signature */
+    flex: 1;
+    background: #fff !important;
+    padding: 4.8mm 4.4mm 3.4mm 4.8mm !important;
+    column-gap: 3.1mm !important;
+  }
+
+  .id-card-fields-redesign {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.35mm !important;
+  }
+
+  .id-line-redesign {
+    display: grid !important;
+    grid-template-columns: 25.2mm 1fr !important;
+    align-items: end !important;
+    column-gap: 1.25mm !important;
+  }
+
+  .id-photo-redesign {
+    width: 27.2mm !important; /* reduced to match preview */
+    height: 28.4mm !important; /* reduced to match preview */
+    border: 1px solid #888 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 3.0mm !important;
+    color: #666 !important;
+    font-style: italic !important;
+    background: #fff !important;
+    overflow: hidden !important;
+  }
+
+  .id-photo-image-redesign {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .id-label-redesign {
+    font-weight: 700;
+    color: #111 !important;
+    font-size: 2.8mm;
+    letter-spacing: 0.03mm;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  .id-value-redesign {
+    position: relative;
+    min-height: 4.25mm;
+    border-bottom: 0.38mm solid #222;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .id-value-text {
+    position: static;
+    max-width: 100%;
+    font-size: 2.35mm;
+    color: #111 !important;
+    line-height: 1.05;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: transparent;
+    padding-right: 0.25mm;
+  }
+
+  .id-card-photo-signature {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* photo at top */
+    align-items: center;
+    gap: 2mm !important; /* small spacing between photo and signature */
+  }
+
+  .id-signature-redesign {
+    width: 100% !important;
+    padding-top: 0.6mm !important;
+    margin-top: 0.4mm !important;
+    min-height: 14mm !important;
+    max-height: 14mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    font-weight: 700 !important;
+    color: #111 !important;
+    overflow: visible !important;
+  }
+
+  .id-signature-image-slot-redesign {
+    width: 100% !important;
+    min-height: 7mm !important;
+    max-height: 7mm !important;
+    display: flex !important;
+    flex-shrink: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .id-signature-line-redesign {
+    width: 100% !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+    height: 0.35mm !important;
+    border-top: 0.35mm solid #222 !important;
+    margin-top: 0.5mm !important;
+    margin-bottom: 0.25mm !important;
+  }
+
+  .id-signature-label-redesign {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    font-size: 2.05mm !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    margin-top: 0.25mm !important;
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+    white-space: nowrap !important;
+  }
+
+  .id-signature-image-redesign {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 6.6mm !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    transform: none !important;
+    transform-origin: center center !important;
+  }
+
+  .id-card-photo-signature img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}

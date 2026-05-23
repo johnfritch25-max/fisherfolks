@@ -1,0 +1,474 @@
+
+        <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Print Fisherfolk ID - 2</title>
+            <style>
+        @page {
+          size: A4 portrait;
+          margin: 8mm;
+        }
+        * {
+          box-sizing: border-box;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: "Arial Narrow", "Arial", "Helvetica Neue", sans-serif;
+          background: #ffffff;
+        }
+        .print-wrap {
+          width: 100%;
+          min-height: calc(100vh - 16mm);
+          display: grid;
+          place-items: start center;
+        }
+        .print-page {
+          width: 100%;
+          display: grid;
+          place-items: start center;
+        }
+        .print-page + .print-page {
+          margin-top: 8mm;
+        }
+        .id-card {
+          --id-accent: #2c6aa2;
+          --id-accent-soft: rgba(44, 106, 162, 0.35);
+          width: 85.6mm;
+          min-height: 54mm;
+          border: 0.45mm solid #7d7d7d;
+          border-radius: 2.6mm;
+          background: #ffffff;
+          padding: 2mm;
+          box-shadow: none;
+          position: relative;
+          overflow: hidden;
+        }
+        /* Theme tokens for card variants — avoid inline styles */
+        .id-card--coastal { --id-accent: #2c6aa2; }
+        .id-card-header {
+          background: var(--id-accent);
+          color: #ffffff;
+          border-radius: 0;
+          height: 8.6mm;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 1.4mm;
+          font-size: 3.8mm;
+          letter-spacing: 0.16mm;
+          line-height: 1;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+
+        .id-card-redesign {
+          width: 85.6mm;
+          height: 54mm;
+          border: 0.45mm solid #7d7d7d;
+          border-radius: 2.6mm;
+          background: #ffffff;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          padding: 0;
+        }
+        .id-card-header-redesign {
+          background: #2176c7;
+          color: #ffffff;
+          text-align: center;
+          font-weight: 700;
+          padding: 2.1mm 0 1.35mm;
+          line-height: 1.1;
+          letter-spacing: 0.2mm;
+        }
+        .id-card-header-redesign div {
+          margin: 0;
+          font-size: 3.2mm;
+        }
+        .id-card-body-redesign {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          flex: 1;
+          padding: 4.2mm 4.2mm 3.1mm 4.6mm;
+          gap: 2.8mm;
+        }
+        .id-card-fields-redesign {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 2.05mm;
+        }
+        .id-card-photo-signature {
+          width: 30.4mm;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+        }
+        .id-line-redesign {
+          display: grid;
+          grid-template-columns: 23mm 1fr;
+          align-items: end;
+          column-gap: 1.15mm;
+        }
+        .id-label-redesign {
+          font-size: 2.25mm;
+          font-weight: 700;
+          color: #111111;
+          line-height: 1;
+          white-space: nowrap;
+        }
+        .id-value-redesign {
+          position: relative;
+          min-height: 3.55mm;
+        }
+        .id-value-text {
+          position: absolute;
+          left: 0;
+          bottom: 0.32mm;
+          max-width: 100%;
+          font-size: 2.05mm;
+          color: #111111;
+          line-height: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          background: #ffffff;
+          padding-right: 0.35mm;
+        }
+        .id-line-redesign:nth-child(4) .id-value-text {
+          font-size: 1.85mm;
+        }
+        .id-underline {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-bottom: 0.35mm solid #222222;
+        }
+        .id-card-photo-signature {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .id-photo-redesign {
+          width: 27.2mm;
+          height: 31.4mm;
+          border: 0.35mm solid #8a8a8a;
+          background: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .id-photo-redesign span {
+          font-size: 2.8mm;
+          color: #666666;
+          font-style: italic;
+        }
+        .id-photo-image-redesign {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .id-signature-redesign {
+          width: 27.2mm;
+          border-top: 0.35mm solid #222222;
+          text-align: center;
+          font-size: 2.3mm;
+          color: #111111;
+          padding-top: 0.8mm;
+          font-weight: 700;
+        }
+
+        .id-card-back {
+          display: grid;
+          grid-template-rows: auto auto auto auto auto;
+          align-content: start;
+        }
+        .id-back-emergency {
+          display: grid;
+          gap: 1.2mm;
+        }
+        .id-back-heading {
+          font-size: 2.3mm;
+          font-weight: 900;
+          color: #111111;
+          line-height: 1.1;
+          letter-spacing: 0.03mm;
+          text-transform: uppercase;
+          margin-bottom: 0.3mm;
+        }
+        .id-back-line {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: end;
+          gap: 1.2mm;
+        }
+        .id-back-line > span:first-child {
+          font-size: 2.3mm;
+          font-weight: 900;
+          color: #111111;
+          line-height: 1.05;
+          text-transform: uppercase;
+        }
+        .id-back-line > span:last-child {
+          display: block;
+          border-bottom: 0.4mm solid #2a2a2a;
+          min-height: 3.1mm;
+        }
+        .id-back-cert-title {
+          margin-top: 2.1mm;
+          background: var(--id-accent);
+          color: #ffffff;
+          text-align: center;
+          font-size: 7.2mm;
+          font-weight: 900;
+          letter-spacing: 0.1mm;
+          line-height: 1;
+          padding: 1.2mm 1.2mm 1.4mm;
+          text-transform: uppercase;
+        }
+        .id-back-cert-copy {
+          margin-top: 2mm;
+          text-align: center;
+          font-size: 2.25mm;
+          line-height: 1.25;
+          color: #111111;
+          font-weight: 500;
+          padding: 0 2mm;
+        }
+        .id-back-sign {
+          margin-top: 1.2mm;
+          text-align: center;
+          font-size: 2.5mm;
+          line-height: 1.1;
+          color: #1b1b1b;
+          font-weight: 500;
+        }
+        .id-back-name {
+          margin: 0.8mm auto 0;
+          width: 64%;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 1mm;
+          align-items: end;
+        }
+        .id-back-name > span:first-child {
+          font-size: 2.2mm;
+          line-height: 1.1;
+          color: #1b1b1b;
+          font-weight: 500;
+        }
+        .id-back-name > span:last-child {
+          display: block;
+          border-bottom: 0.4mm solid #2a2a2a;
+          min-height: 3mm;
+        }
+        .id-card-body {
+          margin-top: 1.4mm;
+          display: grid;
+          grid-template-columns: 1fr 26.2mm;
+          gap: 2.4mm;
+          align-items: start;
+        }
+        .id-card-fields {
+          display: grid;
+          gap: 1.1mm;
+        }
+        .id-line {
+          display: grid;
+          grid-template-columns: 18.5mm 1fr;
+          gap: 1.8mm;
+          align-items: center;
+        }
+        .id-line-full {
+          grid-template-columns: 18.5mm 1fr;
+        }
+        .id-label {
+          font-size: 1.85mm;
+          font-weight: 800;
+          color: #121212;
+          letter-spacing: 0.05mm;
+          line-height: 1.05;
+          text-transform: uppercase;
+        }
+        .id-value {
+          min-height: 4.2mm;
+          border-radius: 0;
+          background: #e3e3e3;
+          display: flex;
+          align-items: center;
+          padding: 0 1.2mm;
+          font-size: 1.75mm;
+          color: #1e1e1e;
+          font-weight: 700;
+          line-height: 1;
+        }
+        .id-card-side {
+          display: grid;
+          gap: 6mm;
+          align-content: start;
+        }
+        .id-photo {
+          height: 24.5mm;
+          border: 0.55mm solid #888888;
+          background: #ffffff;
+          border-radius: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .id-photo span {
+          font-size: 3.9mm;
+          font-weight: 500;
+          color: #696969;
+          letter-spacing: 0.08mm;
+          font-style: italic;
+          text-transform: uppercase;
+        }
+        .id-signature {
+          border-top: 0.45mm solid #9a9a9a;
+          min-height: 5.5mm;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding-top: 1.2mm;
+        }
+        .id-signature span {
+          font-size: 2.2mm;
+          font-weight: 800;
+          color: #474747;
+          letter-spacing: 0.05mm;
+          line-height: 1;
+          text-transform: uppercase;
+        }
+        @media print {
+          body {
+            padding: 0;
+          }
+          .print-wrap {
+            min-height: 0;
+            display: block;
+          }
+          .print-page + .print-page {
+            margin-top: 0;
+            break-before: page;
+            page-break-before: always;
+          }
+        }
+      </style>
+          </head>
+          <body>
+            <div class="print-wrap">
+              <div class="print-page">
+        <div class="id-card-redesign id-card--coastal">
+          <div class="id-card-header-redesign">
+            <div>REPUBLIC OF THE PHILIPPINES</div>
+            <div>PROVINCE OF MINDORO</div>
+            <div>MUNICIPALITY OF BONGABONG</div>
+          </div>
+          <div class="id-card-body-redesign">
+            <div class="id-card-fields-redesign">
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">LAST NAME</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text">Dela Cruz</span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">FIRST NAME</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text">Juan</span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">MIDDLE NAME</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text"></span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">BARANGAY</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text">San Isidro</span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">BIRTHDAY</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text"></span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">FishR Number</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text"></span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+              
+        <div class="id-line-redesign">
+          <span class="id-label-redesign">RSBSA Number</span>
+          <span class="id-value-redesign">
+            <span class="id-value-text"></span>
+            <span class="id-underline"></span>
+          </span>
+        </div>
+      
+            </div>
+            <div class="id-card-photo-signature">
+              <div class="id-photo-redesign"><span>Photo Here</span></div>
+              <div class="id-signature-redesign">SIGNATURE</div>
+            </div>
+            </div>
+          </div>
+      </div>
+              <div class="print-page">
+          <div class="id-card id-card-back id-card--coastal">
+          <div class="id-back-emergency">
+            <div class="id-back-heading">IN CASE OF EMERGENCY, PLEASE NOTIFY:</div>
+            <div class="id-back-line"><span>NAME:</span><span></span></div>
+            <div class="id-back-line"><span>RELATION:</span><span></span></div>
+            <div class="id-back-line"><span>COMPLETE ADDRESS:</span><span></span></div>
+            <div class="id-back-line"><span>CONTACT NO.:</span><span></span></div>
+          </div>
+
+          <div class="id-back-cert-title">CERTIFICATION</div>
+
+          <div class="id-back-cert-copy">
+            This is to certify that the bearer of this card is a legitimate fisherfolk of the Municipality of Bongabong.
+          </div>
+
+          <div class="id-back-sign">Signature</div>
+          <div class="id-back-name"><span>Name:</span><span></span></div>
+        </div>
+      </div>
+            </div>
+          </body>
+        </html>
+      

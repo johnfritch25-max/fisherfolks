@@ -1,0 +1,14 @@
+{
+  "name": "fisherfolk-ims",
+  "version": "1.0.0",
+  "description": "Fisherfolk IMS - Tailwind scaffold",
+  "scripts": {
+    "build:css": "tailwindcss -i ./tailwind/src/input.css -o ./public/tailwind.css -c ./tailwind/tailwind.config.cjs --minify",
+    "dev:css": "tailwindcss -i ./tailwind/src/input.css -o ./public/tailwind.css -c ./tailwind/tailwind.config.cjs --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.4.8"
+  }
+}

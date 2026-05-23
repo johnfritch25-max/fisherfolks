@@ -1,0 +1,15 @@
+<?php
+// Copy this file to config.local.php on the server (outside version control) and fill values.
+// Example Hostinger SMTP settings — replace with your mailbox values.
+
+// SMTP for PHPMailer
+define('SMTP_HOST', 'smtp.hostinger.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'noreply@yourdomain.com');
+define('SMTP_PASS', 'VeryStrongMailboxPassword');
+define('SMTP_SECURE', 'tls'); // 'tls' or 'ssl'
+
+// Optional: override admin OTP expiration (seconds)
+define('ADMIN_OTP_TTL', 300); // 5 minutes
+
+// IMPORTANT: do NOT commit the real config.local.php to source control.

@@ -1,0 +1,10 @@
+vendor/
+node_modules/
+uploads/
+.env
+.env.*
+.DS_Store
+.idea/
+.vscode/
+composer.lock
+*.log
